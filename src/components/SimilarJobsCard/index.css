@@ -1,0 +1,117 @@
+.list-similar {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  background-color: #202020;
+  border-radius: 15px;
+  align-items: center;
+  padding: 25px;
+  margin-right: 30px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 767px) {
+  .list-similar {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+.container-of-logo {
+  display: flex;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.company-logo-similar {
+  height: 80px;
+  margin-right: 25px;
+  align-self: center;
+}
+
+.titile-container-similar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.title-text-similar {
+  font-family: Roboto;
+  font-size: 30px;
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .company-logo-similar {
+    height: 60px;
+  }
+  .title-text-similar {
+    font-size: 20px;
+  }
+}
+
+.rating-container {
+  display: flex;
+}
+
+.star-icon {
+  height: 25px;
+  width: 25px;
+  color: #fbbf24;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.rating-text {
+  font-family: Roboto;
+  font-size: 20px;
+  color: #ffffff;
+  align-self: center;
+}
+
+.description-heading {
+  font-family: Roboto;
+  font-size: 30px;
+  color: #ffffff;
+  margin-bottom: 5px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.description-text {
+  font-family: Roboto;
+  font-size: 20px;
+  color: #cbd5e1;
+  margin-bottom: 15px;
+  line-height: 2;
+}
+
+.bottom-container {
+  display: flex;
+  width: 100%;
+}
+
+.locatin-container {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.locatin-icon {
+  height: 25px;
+  width: 25px;
+  align-self: center;
+  margin-right: 10px;
+  color: #ffffff;
+}
+
+.locatin-text {
+  font-family: Roboto;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.job-container {
+  display: flex;
+  align-self: center;
+}
