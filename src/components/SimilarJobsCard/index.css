@@ -1,5 +1,5 @@
 .list-similar {
-  width: 35%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   background-color: #202020;
@@ -24,7 +24,7 @@
 }
 
 .company-logo-similar {
-  height: 80px;
+  height: 70px;
   margin-right: 25px;
   align-self: center;
 }
@@ -37,7 +37,7 @@
 
 .title-text-similar {
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 25px;
   color: #ffffff;
 }
 
@@ -64,14 +64,14 @@
 
 .rating-text {
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 18px;
   color: #ffffff;
   align-self: center;
 }
 
 .description-heading {
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 25px;
   color: #ffffff;
   margin-bottom: 5px;
   width: 100%;
@@ -80,7 +80,7 @@
 
 .description-text {
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 18px;
   color: #cbd5e1;
   margin-bottom: 15px;
   line-height: 2;

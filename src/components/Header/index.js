@@ -12,14 +12,13 @@ const Header = props => {
     const {history} = props
     Cookies.remove('jwt_token')
     history.replace('/login')
-    console.log('hello')
   }
 
   return (
-    <nav className="nav-bar">
+    <nav className="nav-bar-job">
       <Link to="/" className="link">
         <img
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+          src="https://res.cloudinary.com/dufhgcfh6/image/upload/v1696807830/technology-brain-design-logo-with-interconnected-lines_347382-747-removebg-preview_vvvb03.png"
           className="log-header"
           alt=""
         />
@@ -32,7 +31,7 @@ const Header = props => {
           <p className="jobs-text">Jobs</p>
         </Link>
       </div>
-      <button className="logout-btn" type="button">
+      <button className="logout-btn" type="button" onClick={clickLogout}>
         Logout
       </button>
       <div className="icon-container">

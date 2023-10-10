@@ -1,11 +1,10 @@
 .bg-color-jobItem {
-  background-color: black;
+  background-image: radial-gradient(#979b9e, #abacb1, #b9babf, #c7c8cc);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding-bottom: 50px;
-  padding-top: 30px;
 }
 
 .item-container {
@@ -194,6 +193,45 @@
   color: #ffffff;
   font-weight: bold;
   align-self: center;
+}
+
+.vist-apply-container {
+  display: flex;
+  align-items: center;
+}
+
+.apply-btn {
+  width: 120px;
+  height: 45px;
+  background-color: #4f46e5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 15px;
+  color: #ffffff;
+  border-width: 0px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.apply-btn-success {
+  width: 120px;
+  height: 45px;
+  background-color: #14a44d;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 15px;
+  color: #ffffff;
+  border-width: 0px;
+  margin-right: 25px;
+  cursor: pointer;
 }
 
 .visit-container {
@@ -456,4 +494,128 @@
   .un-order-similarJobs {
     flex-direction: column;
   }
+}
+
+.popup-content {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  background: rgba(5, 5, 5, 0.781);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-popup-container {
+  width: 50%;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.cancel-pop-up {
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.form-conatiner {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.email-label {
+  font-family: Roboto;
+  font-size: 20px;
+  color: #202020;
+  margin-bottom: 10px;
+}
+
+.input-final-submit {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #202020;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  font-family: Roboto;
+  font-size: 15px;
+  color: gray;
+  padding: 10px;
+  padding-left: 12px;
+}
+
+.file-input {
+  font-size: 16px;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 5px 5px 10px black;
+  width: 350px;
+  outline: none;
+  margin-bottom: 40px;
+}
+
+::-webkit-file-upload-button {
+  color: white;
+  background: #206a5d;
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 1px 0 1px 1px #6b4559;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 200px;
+  height: 45px;
+  border-width: 0px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-family: Roboto;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #0275d8;
+  padding: 10px;
+  padding-left: 12px;
+  box-shadow: 5px 5px 10px black;
+  cursor: pointer;
+}
+
+.appliction-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.image-application {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.text-of-application-status {
+  font-size: 20px;
+  font-family: Roboto;
+  color: #202020;
+}
+
+.error-message {
+  align-self: start;
+  font-size: 15px;
+  margin-top: 3px;
+  margin-bottom: 0px;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 16px;
+  color: #ff0b37;
 }

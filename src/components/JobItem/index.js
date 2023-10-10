@@ -3,6 +3,8 @@ import {Component} from 'react'
 import {AiFillStar} from 'react-icons/ai'
 import {IoLocationSharp} from 'react-icons/io5'
 import {IoMdMail} from 'react-icons/io'
+import {GiCancel} from 'react-icons/gi'
+import Popup from 'reactjs-popup'
 
 import {BiLinkExternal} from 'react-icons/bi'
 
@@ -14,6 +16,7 @@ import Header from '../Header'
 import SimilarJobsCard from '../SimilarJobsCard'
 
 import './index.css'
+import AllContext from '../../context/AllContext'
 
 const displayStatus = {
   success: 'SUCCESS',
@@ -40,6 +43,9 @@ class JobItem extends Component {
     jobDetailsList: [],
     similarJobsList: [],
     Status: displayStatus.loading,
+    emailFeild: '',
+    fileFeild: '',
+    errorMsg: '',
   }
 
   componentDidMount() {
@@ -96,9 +102,124 @@ class JobItem extends Component {
     }
   }
 
+  changeFile = e => {
+    this.setState({fileFeild: e.target.value, errorMsg: ''})
+  }
+
+  onChangeEmail = e => {
+    this.setState({emailFeild: e.target.value, errorMsg: ''})
+  }
+
+  submitingForm = () => {
+    const {emailFeild, fileFeild, errorMsg} = this.state
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+
+    return (
+      <AllContext.Consumer>
+        {value => {
+          const {onClickJobApplicationId} = value
+          const formSubmit = e => {
+            e.preventDefault()
+            const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+            if (emailFeild.match(validRegex) && fileFeild.length !== 0) {
+              onClickJobApplicationId(id)
+            } else {
+              this.setState({errorMsg: 'Enter All Details'})
+            }
+          }
+          return (
+            <form className="form-conatiner" onSubmit={formSubmit}>
+              <label className="email-label" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter Your Email"
+                className="input-final-submit"
+                onChange={this.onChangeEmail}
+                value={emailFeild}
+              />
+              <label className="email-label" htmlFor="file">
+                Upload Your Resume
+              </label>
+              <input
+                type="file"
+                className="file-input"
+                id="file"
+                onChange={this.changeFile}
+                value={fileFeild}
+              />
+              <button className="btn-submit" type="submit">
+                Submit
+              </button>
+              <p className="error-message">{errorMsg}</p>
+            </form>
+          )
+        }}
+      </AllContext.Consumer>
+    )
+  }
+
+  applyPopUp = () => {
+    const {
+      jobDetailsList,
+      isSubmitTrue,
+      errorMsg,
+      emailFeild,
+      fileFeild,
+    } = this.state
+    const {title} = jobDetailsList
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+    return (
+      <AllContext.Consumer>
+        {value => {
+          const {jobApplicationIds} = value
+
+          return (
+            <Popup
+              modal
+              trigger={
+                jobApplicationIds.includes(id) ? (
+                  <button className="apply-btn-success">Applied</button>
+                ) : (
+                  <button className="apply-btn">Apply Now</button>
+                )
+              }
+              className="popup-content"
+            >
+              {close => (
+                <div className="content-popup-container">
+                  <GiCancel className="cancel-pop-up" onClick={close} />
+                  {jobApplicationIds.includes(id) === false ? (
+                    this.submitingForm()
+                  ) : (
+                    <div className="appliction-container">
+                      <img
+                        src="https://res.cloudinary.com/dufhgcfh6/image/upload/v1696881873/pngwing.com_jjyg9c.png"
+                        className="image-application"
+                        alt="Application Status"
+                      />
+                      <h1 className="text-of-application-status">
+                        Your application was sent to {title} Role
+                      </h1>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Popup>
+          )
+        }}
+      </AllContext.Consumer>
+    )
+  }
+
   responseSuccess = () => {
     const {jobDetailsList, similarJobsList} = this.state
-    console.log(similarJobsList)
     const {
       companyLogoUrl,
       companyWebsiteUrl,
@@ -149,10 +270,13 @@ class JobItem extends Component {
           <hr className="hr-line-item" />
           <div className="container-description">
             <h1 className="description-heading-item">Description</h1>
-            <a href={companyWebsiteUrl} className="visit-container">
-              <p className="visit-link">Visit</p>
-              <BiLinkExternal className="visit-logo" />
-            </a>
+            <div className="vist-apply-container">
+              {this.applyPopUp()}
+              <a href={companyWebsiteUrl} className="visit-container">
+                <p className="visit-link">Visit</p>
+                <BiLinkExternal className="visit-logo" />
+              </a>
+            </div>
           </div>
           <p className="description-item">{jobDescription}</p>
           <h1 className="skill-heading">Skills</h1>
@@ -185,7 +309,7 @@ class JobItem extends Component {
 
   loading = () => (
     <div className="loader-container loding-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      <Loader type="ThreeDots" color="#000000" height="50" width="50" />
     </div>
   )
 
@@ -226,10 +350,10 @@ class JobItem extends Component {
 
   render() {
     return (
-      <>
+      <div className="bg-color-jobItem">
         <Header />
-        <div className="bg-color-jobItem">{this.displayCode()}</div>
-      </>
+        {this.displayCode()}
+      </div>
     )
   }
 }

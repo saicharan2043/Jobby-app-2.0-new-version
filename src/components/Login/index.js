@@ -1,89 +1,134 @@
 import {Component} from 'react'
-
-import {Redirect} from 'react-router-dom'
-
+import {withRouter} from 'react-router-dom/cjs/react-router-dom.min'
 import Cookies from 'js-cookie'
+
+import Loader from 'react-loader-spinner'
 
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: '', errorMsg: ''}
-
-  changeUserName = event => {
-    this.setState({username: event.target.value})
+  state = {
+    username: '',
+    password: '',
+    showSubmitError: false,
+    errorMsg: '',
+    isLoadingTrue: false,
   }
 
-  changePassword = event => {
-    this.setState({password: event.target.value})
+  onChangeUsername = event => {
+    this.setState({username: event.target.value, showSubmitError: false})
+  }
+
+  onChangePassword = event => {
+    this.setState({password: event.target.value, showSubmitError: false})
+  }
+
+  onSubmitSuccess = async () => {
+    const {history} = this.props
+
+    const url = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({username: 'rahul', password: 'rahul@2021'}),
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+
+    Cookies.set('jwt_token', data.jwt_token, {
+      expires: 30,
+    })
+    this.setState({isLoadingTrue: false})
+    history.replace('/')
+  }
+
+  onSubmitFailure = errorMsg => {
+    this.setState({showSubmitError: true, errorMsg, isLoadingTrue: false})
   }
 
   submitForm = async event => {
     event.preventDefault()
-
     const {username, password} = this.state
-    const userDetails = {
-      username,
-      password,
-    }
-    const url = 'https://apis.ccbp.in/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    if (response.ok === true) {
-      const JwtToken = data.jwt_token
-      Cookies.set('jwt_token', JwtToken, {expires: 30})
-      const {history} = this.props
-      history.replace('/')
+    const userDetails = {username, password}
+    if (username === '' || password === '') {
+      this.setState({errorMsg: 'Fill All details', showSubmitError: true})
     } else {
-      this.setState({errorMsg: data.error_msg})
+      this.setState({showSubmitError: false, isLoadingTrue: true})
+      // const url = 'http://localhost:5000/login'
+      const url = 'https://demo-hosting-su9j.onrender.com/login'
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userDetails),
+      }
+      const response = await fetch(url, options)
+      const data = await response.json()
+      if (response.ok === true) {
+        this.onSubmitSuccess()
+      } else {
+        this.onSubmitFailure(data.error_msg)
+      }
     }
   }
 
-  render() {
-    const {errorMsg} = this.state
-    const jwtToken = Cookies.get('jwt_token')
-    if (jwtToken !== undefined) {
-      return <Redirect to="/" />
-    }
+  renderPasswordField = () => {
+    const {password} = this.state
+
     return (
-      <div className="bg-color-login">
-        <div className="container-login">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-            alt="website logo"
-            className="logo-login"
-          />
-          <form className="form-container" onSubmit={this.submitForm}>
-            <label htmlFor="username" className="label">
-              USERNAME
-            </label>
-            <input
-              className="input"
-              type="text"
-              placeholder="Username"
-              id="username"
-              onChange={this.changeUserName}
-            />
-            <label htmlFor="password" className="label">
-              PASSWORD
-            </label>
-            <input
-              className="input"
-              type="password"
-              placeholder="Password"
-              id="password"
-              onChange={this.changePassword}
-            />
-            <button className="button">Login</button>
-            <p className="error-text">{errorMsg}</p>
-          </form>
-        </div>
-      </div>
+      <>
+        <label className="lable" htmlFor="password">
+          PASSWORD
+        </label>
+        <input
+          type="password"
+          id="password"
+          className="input"
+          value={password}
+          onChange={this.onChangePassword}
+          placeholder="Password"
+        />
+      </>
+    )
+  }
+
+  renderUsernameField = () => {
+    const {username} = this.state
+
+    return (
+      <>
+        <label className="lable" htmlFor="username">
+          USERNAME
+        </label>
+        <input
+          type="text"
+          id="username"
+          className="input"
+          value={username}
+          onChange={this.onChangeUsername}
+          placeholder="Enter Your Email"
+        />
+      </>
+    )
+  }
+
+  render() {
+    const {showSubmitError, errorMsg, isLoadingTrue} = this.state
+
+    return (
+      <form className="form-container-login" onSubmit={this.submitForm}>
+        {this.renderUsernameField()}
+        {this.renderPasswordField()}
+        <button type="submit" className="btn-login">
+          Login
+        </button>
+        {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+        {isLoadingTrue && (
+          <Loader type="ThreeDots" color="#000000" height="50" width="50" />
+        )}
+      </form>
     )
   }
 }
 
-export default Login
+export default withRouter(Login)

@@ -1,0 +1,99 @@
+.first-container {
+  height: 100vh;
+  display: flex;
+}
+
+.left-bg-image {
+  background-image: url('https://c1.wallpaperflare.com/preview/287/505/88/people-man-dark-night-sunset-silhouette.jpg');
+  width: 50%;
+  height: 100vh;
+  background-size: cover;
+}
+
+.left-bg-color {
+  background-color: #089949;
+  opacity: 0.9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-right: 100px;
+}
+
+.left-side-heading {
+  font-family: Sans-serif;
+  font-size: 35px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  margin-left: 120px;
+}
+
+.left-side-paragraph {
+  font-family: Sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 30px;
+}
+
+.form-container {
+  height: 100vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 100px;
+  background-color: aliceblue;
+  overflow: auto;
+}
+
+.login-register-tab {
+  display: flex;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  padding: 0px;
+}
+
+.login-tab {
+  width: 300px;
+  height: 45px;
+  border-width: 0px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: black;
+  font-family: 'Roboto';
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.register-tab {
+  width: 300px;
+  height: 45px;
+  border-width: 0px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: black;
+  font-family: 'Roboto';
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.under-score {
+  border: 2px solid #0b69ff;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-radius: 5px;
+}

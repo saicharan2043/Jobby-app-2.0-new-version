@@ -1,11 +1,15 @@
-.nav-bar {
-  height: 18vh;
-  background-color: #272727;
+.nav-bar-job {
+  height: 15vh;
+  width: 100%;
+  background-color: #c7c8cc;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 70px;
   padding-right: 70px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: sticky;
+  top: 0px;
 }
 
 .log-header {
@@ -13,33 +17,15 @@
   align-self: center;
 }
 
-@media (max-width: 767px) {
-  .nav-bar {
-    padding-left: 10px;
-    padding-right: 5px;
-    height: 12vh;
-  }
-
-  .log-header {
-    height: 30px;
-  }
-}
-
 .home-jobs-container {
   display: flex;
   align-items: center;
 }
 
-@media (max-width: 767px) {
-  .home-jobs-container {
-    display: none;
-  }
-}
-
 .home-text {
   font-family: Roboto;
   font-size: 20px;
-  color: #ffffff;
+  color: #000000;
   align-self: center;
   margin-right: 15px;
   font-weight: bold;
@@ -48,10 +34,15 @@
 .jobs-text {
   font-family: Roboto;
   font-size: 20px;
-  color: #ffffff;
+  color: #000000;
   align-self: center;
   margin-left: 15px;
   font-weight: bold;
+}
+
+.home-text :hover {
+  scale: 2;
+  color: #4f46e5;
 }
 
 .logout-btn {
@@ -69,22 +60,10 @@
   border-width: 0px;
 }
 
-@media (max-width: 767px) {
-  .logout-btn {
-    display: none;
-  }
-}
-
 .icon-container {
   display: flex;
   display: none;
   align-self: center;
-}
-
-@media (max-width: 767px) {
-  .icon-container {
-    display: block;
-  }
 }
 
 .icon {
